@@ -62,7 +62,7 @@ build_presentation() {
             echo '<script src="highlight/highlight.pack.js"></script>'
             echo '<script>hljs.highlightAll();</script>'
             # This JS automatically reloads the page by checking the length every second.
-            echo '<script>setInterval(() => {fetch(location.href, {method: "HEAD"}).then(x => {const len = x.status === 200 ? Number(x.headers.get("content-length")) : NaN; if (Number.isFinite(len)) { if (Number.isFinite(window.lastLen) && window.lastLen !== len) { location.reload() }; window.lastLen = len } })}, 1000)</script>'
+            echo '<script>if (location.protocol !== "file:") { setInterval(() => {fetch(location.href, {method: "HEAD"}).then(x => {const len = x.status === 200 ? Number(x.headers.get("content-length")) : NaN; if (Number.isFinite(len)) { if (Number.isFinite(window.lastLen) && window.lastLen !== len) { location.reload() }; window.lastLen = len } })}, 1000) }</script>'
 
         echo '</body>'
 
